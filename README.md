@@ -1,6 +1,6 @@
 # vue.js
 
-> A Vue.js project
+> this acrossw.cn view code
 
 ## Build Setup
 
