@@ -1,11 +1,31 @@
 <template>
-    <div>
+    <div v-loading.fullscreen.lock='fullscreenLoading'>
         <transition name='switch'>
             <router-view></router-view>
         </transition>
         <div id='bg'></div>
     </div>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                //fullLoading
+                fullscreenLoading: false
+            }
+        },
+        created: function () {
+            this.$on('loading', this.fullscreenLoading)
+        },
+        methods : {
+            fullscreenLoading : r => {
+                alert(r)
+            }
+        }
+    }
+
+</script>
 
 <style>
     .switch-enter-active,

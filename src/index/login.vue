@@ -1,5 +1,5 @@
 <template>
-    <div id='index-login' v-loading.fullscreen.lock='showloading'>
+    <div id='index-login'>
         <el-form :label-position="labelPosition" label-width="80px" :model="loginForm" id='index-login-form'>
             <el-form-item label="E-Mail">
                 <el-input v-model="loginForm.email"></el-input>
@@ -26,8 +26,6 @@
                 },
                 //切换登陆
                 switchLogin: true,
-                //切换登陆
-                showloading: false,
             }
         },
         methods: {
@@ -38,7 +36,10 @@
                 this.$http.post('http://acrossw.cn/user/login', this.loginForm).then(r => {
                     if (r.body.type == 'success') {
                         this.clickLoginBtn = false
-                        this.showloading = true;
+                        localStorage.setItem('youziyo-token', r.body.token)
+                        this.$router.push('user')
+                        this.$emit('loading', true)
+                        
                     } else if (r.body.type == 'fail') {
                         let errorMes = ''
                         r.body.mes.forEach((v, i) => {

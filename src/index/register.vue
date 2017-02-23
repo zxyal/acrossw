@@ -29,6 +29,7 @@
                     password: '',
                     rpassword: ''
                 },
+
             }
         },
         methods: {
@@ -40,6 +41,8 @@
 
                     if (r.body.type == 'success') {
                         this.clickregister = false
+                        this.$router.push('user')
+                        this.$emit('loading', true)
 
                     } else if (r.body.type == 'fail') {
                         this.clickregister = false

@@ -3,12 +3,13 @@ import VueRouter from 'vue-router'
 //Index
 import indexPage from './index/index.vue'
 import indexMainPage from './index/main.vue'
-import loginPage from './index/login.vue'
-import registerPage from './index/register.vue'
+import indexLoginPage from './index/login.vue'
+import indexRegisterPage from './index/register.vue'
 
 //User
-import userIndexPage from './user/index.vue'
-import userBuyPage from './user/buy.vue'
+import userMainPage from './user/main.vue'
+import userHomePage from './user/home.vue'
+
 
 const routes = [
   {
@@ -16,21 +17,22 @@ const routes = [
     component: indexPage,
     children: [
       { path: '/', component: indexMainPage },      
-      { path: 'login', component: loginPage },
-      { path: 'register', component: registerPage },
+      { path: 'login', component: indexLoginPage },
+      { path: 'register', component: indexRegisterPage },
     ]
   },
   {
     path: '/user',
-    component: userIndexPage,
+    component: userMainPage,
     children: [
       {
-        path: 'fuck',
-        component: userBuyPage
+        path: '',
+        component: userHomePage
       },
     ]
   },
 ]
+
 
 const router = new VueRouter({
   routes, // （缩写）相当于 routes: routes

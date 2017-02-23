@@ -15,8 +15,17 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 Vue.use(ElementUi)
 
-Vue.http.options.emulateJSON = true;
+//拦截器
+Vue.http.interceptors.push(function (request, next) {
 
+  let token = localStorage.getItem('youziyo-token')
+
+  if (token) {
+    request.headers.set('Verify-Token', token);
+  }
+
+  next();
+});
 
 new Vue({
   el: '#app',
