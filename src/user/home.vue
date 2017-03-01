@@ -7,7 +7,7 @@
                 <div class="header-nav-li">关于</div>
             </div>
             <div class="header-user">
-                <span>zxywx@outlook.com</span>
+                <span>{{email}}</span>
             </div>
         </header>
         <div id='main'>
@@ -30,12 +30,16 @@
             </div>
             <div class="box-info" style="width: 400px">
                 <p class="box-title">套餐信息</p>
-
             </div>
-            <div class="box-info " style="width: 300px">
+            <div class="box-info " style="width: 400px">
                 <p class="box-title">已使用流量</p>
                 <el-progress type="circle" :percentage="26">大大的</el-progress>
             </div>
+
+            <div class="box-info" style="width: 400px">
+                <p class="box-title">动态</p>
+            </div>
+
         </div>
     </div>
 </template>
@@ -48,13 +52,32 @@
                     display: 'none'
                 },
                 showIndex: true,
-                showBg: false
+                showBg: false,
+                email: 'haha',
             }
         },
-        methods: {
-            urlChange: function (r) {
-                console.log(r)
+        created() {
+            let jsonInfo = localStorage.getItem('youziyo-info');
+            if (jsonInfo) {
+                let info = JSON.parse(jsonInfo);
+                this.email = info.email
             }
+
+            this.$http.post('http://acrossw.cn/home', this.loginForm).then(r => {
+
+                console.log(r)
+                
+                if (r.body.type == 'success') {
+
+
+                } else if (r.body.type == 'fail') {
+
+                }
+            }, r => {
+                alert('error')
+            });
+        },
+        methods: {
         },
     }
 
@@ -72,10 +95,13 @@
     }
     
     #main {
-        /*width: 100vw;*/
         display: flex;
-        justify-content: center;
+        width: 70%;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        /*justify-content: center;*/
         margin-top: 40px;
+        transition: all .4s;
     }
     
     .header-nav {}
@@ -111,8 +137,10 @@
         height: 200px;
         padding: 20px;
         margin-left: 30px;
+        margin-top: 30px;
         background-color: #fff;
         box-shadow: 0 0 3px 2px #efefef;
+        transition: all .4s;
     }
     
     .box-title {

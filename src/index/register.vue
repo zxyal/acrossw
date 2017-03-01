@@ -40,13 +40,22 @@
                 this.$http.post('http://acrossw.cn/user/register', this.registerForm).then(r => {
 
                     if (r.body.type == 'success') {
+
+                        localStorage.setItem('youziyo-token', r.body.token)
+                        localStorage.setItem('youziyo-info', r.body.info)
                         this.clickregister = false
-                        this.$router.push('user')
-                        this.$emit('loading', true)
+
+                        this.$message({
+                            message: '注册成功',
+                            type: 'success',
+                            onClose: c => {
+                                this.$router.push('user')
+                            }
+                        });
 
                     } else if (r.body.type == 'fail') {
                         this.clickregister = false
-                        
+
                         let errorMes = ''
                         r.body.mes.forEach((v, i) => {
                             errorMes += v + ' / '

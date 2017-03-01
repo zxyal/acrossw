@@ -1,7 +1,7 @@
 <template>
     <div id='index-login'>
-        <el-form :label-position="labelPosition" label-width="80px" :model="loginForm" id='index-login-form'>
-            <el-form-item label="E-Mail">
+        <el-form :label-position="labelPosition" label-width="80px" :rules="rules" :model="loginForm" id='index-login-form'>
+            <el-form-item label="E-Mail" prop="email">
                 <el-input v-model="loginForm.email"></el-input>
             </el-form-item>
             <el-form-item label="密码">
@@ -26,8 +26,14 @@
                 },
                 //切换登陆
                 switchLogin: true,
+                rules: {
+                    email: [
+                        { type: 'email', message: '请填写正确的E-Mail', trigger: 'blur' },
+                    ]
+                },
             }
         },
+
         methods: {
             //登陆
             loginPost: function (mes) {
@@ -35,11 +41,19 @@
 
                 this.$http.post('http://acrossw.cn/user/login', this.loginForm).then(r => {
                     if (r.body.type == 'success') {
+
                         this.clickLoginBtn = false
                         localStorage.setItem('youziyo-token', r.body.token)
-                        this.$router.push('user')
-                        this.$emit('loading', true)
-                        
+                        localStorage.setItem('youziyo-info', r.body.info)
+
+                        this.$message({
+                            message: '登陆成功',
+                            type: 'success',
+                            onClose: c => {
+                                this.$router.push('user')
+                            }
+                        });
+
                     } else if (r.body.type == 'fail') {
                         let errorMes = ''
                         r.body.mes.forEach((v, i) => {
@@ -50,7 +64,7 @@
                         });
                     }
                 }, r => {
-
+                    alert('error')
                 });
 
             },

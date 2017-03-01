@@ -1,5 +1,7 @@
 <template>
-    <router-view></router-view>
+    <transition name='switch'>
+        <router-view></router-view>
+    </transition>
 </template>
 
 <script>
@@ -23,5 +25,14 @@
 </script>
 
 <style>
-
+    .switch-enter-active,
+    .switch-leave-active {
+        transition: all .4s;
+    }
+    
+    .switch-enter,
+    .switch-leave-to {
+        opacity: 0;
+        margin-top: 0;
+    }
 </style>

@@ -15,11 +15,24 @@
                 fullscreenLoading: false
             }
         },
-        created: function () {
+        created () {
             this.$on('loading', this.fullscreenLoading)
+            
+            //检测本地
+            let jsonInfo = localStorage.getItem('youziyo-info')
+
+            if (jsonInfo) {
+                let info = JSON.parse(jsonInfo);
+                let nowTime = new Date().getTime().toString().substr(0, 10);
+                if (info.overdue_time < nowTime) {
+                    localStorage.removeItem('youziyo-info')
+                    localStorage.removeItem('youziyo-token')
+                }
+            }
+
         },
-        methods : {
-            fullscreenLoading : r => {
+        methods: {
+            fullscreenLoading: r => {
                 alert(r)
             }
         }
