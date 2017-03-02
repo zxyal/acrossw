@@ -30,6 +30,15 @@
             </div>
             <div class="box-info" style="width: 400px">
                 <p class="box-title">套餐信息</p>
+                <div>
+                    <span>总流量:{{totalTraffic}}</span>
+                </div>
+                <div>
+                    <span>已使用:{{totalTraffic}}</span>
+                </div>
+                <div>
+                    <span>总流量:{{totalTraffic}}</span>
+                </div>
             </div>
             <div class="box-info " style="width: 400px">
                 <p class="box-title">已使用流量</p>
@@ -54,6 +63,8 @@
                 showIndex: true,
                 showBg: false,
                 email: 'haha',
+                //total
+                totalTraffic: 0,
             }
         },
         created() {
@@ -63,12 +74,23 @@
                 this.email = info.email
             }
 
-            this.$http.post('http://acrossw.cn/home', this.loginForm).then(r => {
+            this.$http.post(this.$store.state.apiUrl + '/home', this.loginForm).then(r => {
 
-                console.log(r)
-                
                 if (r.body.type == 'success') {
 
+                    if (1024 < r.body.data.transfer_enable && ((1024 * 1024) - 1) > r.body.data.transfer_enable) {
+                        var totalTransfer = (r.body.data.transfer_enable / 1024).toFixed(2)
+                        var unitText = 'KB'
+                    } else if ((1024 * 1024) < r.body.data.transfer_enable && ((1024 * 1024 * 1024) - 1) > r.body.data.transfer_enable) {
+                        var totalTransfer = (r.body.data.transfer_enable / (1024 * 1024)).toFixed(2)
+                        var unitText = 'MB'
+                    } else if ((1024 * 1024 * 1024) < r.body.data.transfer_enable && ((1024 * 1024 * 1024 * 1024) - 1) > r.body.data.transfer_enable) {
+                        var totalTransfer = (r.body.data.transfer_enable / (1024 * 1024 * 1024)).toFixed(2)
+                        console.log(totalTransfer)
+                        var unitText = 'GB'
+                    }
+
+                    this.totalTraffic = totalTransfer + unitText
 
                 } else if (r.body.type == 'fail') {
 

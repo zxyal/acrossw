@@ -39,7 +39,7 @@
             loginPost: function (mes) {
                 this.clickLoginBtn = true
 
-                this.$http.post('http://acrossw.cn/user/login', this.loginForm).then(r => {
+                this.$http.post(this.$store.state.apiUrl + '/login', this.loginForm).then(r => {
                     if (r.body.type == 'success') {
 
                         this.clickLoginBtn = false
@@ -68,7 +68,8 @@
                 });
 
             },
-        }
+        },
+
     }
 
 </script>

@@ -43,11 +43,12 @@
 <style>
     .switch-enter-active,
     .switch-leave-active {
-        transition: all .4s;
+        transition: all 1s ease-in-out;
     }
     
     .switch-enter,
     .switch-leave-to {
+        transition: all 1s ease-in-out;        
         opacity: 0;
         margin-top: 0;
     }
