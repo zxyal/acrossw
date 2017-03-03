@@ -37,7 +37,7 @@
             registerPost: function (mes) {
                 this.clickregister = true
 
-                this.$http.post(this.$store.state.apiUrl+'/register', this.registerForm).then(r => {
+                this.$http.post(this.$store.state.apiUrl+'/user/register', this.registerForm).then(r => {
 
                     if (r.body.type == 'success') {
 
