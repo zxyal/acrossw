@@ -1,75 +1,77 @@
 <template>
     <div id='index-login'>
-        <el-form :label-position="labelPosition" label-width="80px" :rules="rules" :model="loginForm" id='index-login-form'>
-            <el-form-item label="E-Mail" prop="email">
-                <el-input v-model="loginForm.email"></el-input>
-            </el-form-item>
-            <el-form-item label="密码">
-                <el-input type="password" v-model="loginForm.password"></el-input>
-            </el-form-item>
-            <el-button type="primary" @click='loginPost' :loading="clickLoading" style="width: 100%">登陆</el-button>
-        </el-form>
-        <router-link to='register' tag='div' class="t-btn">还未注册？<strong> 立即注册</strong><i style="width: 25px" class="el-icon-arrow-right"></i></router-link>
+        <i-form :model="formLogin" :rules="formLoginRule" label-position="top" id='index-login-form'>
+            <Form-item label="E-MAIL" prop="email">
+                <i-input type="text" v-model="formLogin.email" number></i-input>
+            </Form-item>
+            <Form-item label="密码" prop="password">
+                <i-input type="password" v-model="formLogin.password"></i-input>
+            </Form-item>
+            <Form-item>
+                <i-button type="primary" long @click.native="loginPost" :loading="clickLoading">
+                    <span v-if="!clickLoading"> 登陆</span>
+                    <span v-else>Loading...</span>
+                </i-button>
+            </Form-item>
+        </i-form>
+        <router-link to='register' tag='div' class="t-btn">还没注册？<strong> 立即注册</strong>
+            <Icon style="width: 25px" type="ios-arrow-forward"></Icon>
+        </router-link>
     </div>
 </template>
-
 <script>
-    export default {
-        data() {
+export default {
+    data() {
             return {
-                labelPosition: 'top',
                 clickLoading: false,
-
-                loginForm: {
+                formLogin: {
                     email: '',
-                    password: ''
+                    password: '',
                 },
-                //切换登陆
-                switchLogin: true,
-                rules: {
-                    email: [
-                        { type: 'email', message: '请填写正确的E-Mail', trigger: 'blur' },
-                    ]
-                },
+                formLoginRule: {
+                    email: [{
+                        type: 'email',
+                        message: '请填写正确的E-Mail',
+                        trigger: 'blur'
+                    }, ],
+                    password: [{
+                        message: '请填写密码',
+                        trigger: 'blur'
+                    }, {
+                        type: 'string',
+                        min: 6,
+                        message: '密码不能少于6位',
+                        trigger: 'blur'
+                    }]
+                }
             }
         },
-
         methods: {
-            //登陆
-            loginPost: function (mes) {
-                this.clickLoginBtn = true
+            loginPost() {
+                this.clickLoading = true
 
-                this.$http.post(this.$store.state.apiUrl + '/user/login', this.loginForm).then(r => {
+                this.$http.post(this.$store.state.apiUrl + '/user/login', this.formLogin).then(r => {
+
+                    this.clickLoading = false
+
                     if (r.body.type == 'success') {
+                        localStorage.setItem('acrossw-token', r.body.token)
+                        localStorage.setItem('acrossw-info', r.body.info)
 
-                        this.clickLoginBtn = false
-                        localStorage.setItem('youziyo-token', r.body.token)
-                        localStorage.setItem('youziyo-info', r.body.info)
-
-                        this.$message({
-                            message: '登陆成功',
-                            type: 'success',
-                            onClose: c => {
-                                this.$router.push('user')
-                            }
-                        });
+                        this.$Message.success('登陆成功', 2, n => {
+                            this.$router.push('user')
+                        })
 
                     } else if (r.body.type == 'fail') {
-                        let errorMes = ''
-                        r.body.mes.forEach((v, i) => {
-                            errorMes += v + ' / '
-                        })
-                        this.$notify.error({
-                            message: errorMes
-                        });
+                        this.$Message.error(r.body.mes[0], 2)
                     }
+
                 }, r => {
-                    alert('error')
+                    this.clickLoading = false
+                    this.$Message.error('网络错误，请稍后重试', 2)
                 });
 
             },
-        },
-
-    }
-
+        }
+}
 </script>

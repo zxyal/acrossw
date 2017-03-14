@@ -57,7 +57,7 @@
         margin: auto;
         margin-top: 240px;
         width: 300px;
-        height: 280px;
+        height: 320px;
         border-radius: 4px;
         box-shadow: 0 15px 30px 0 rgba(0, 0, 1, .1);
         background-color: rgb(255, 255, 255);
@@ -78,7 +78,7 @@
         margin: auto;
         margin-top: 280px;
         width: 300px;
-        height: 200px;
+        height: 240px;
         border-radius: 4px;
         box-shadow: 0 15px 30px 0 rgba(0, 0, 1, .1);
         background-color: rgb(255, 255, 255);

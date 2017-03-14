@@ -7,7 +7,8 @@ Vue.use(Vuex)
 //配置
 export default new Vuex.Store({
   state: {
-    apiUrl: 'http://api.acrossw.cn'
+    //apiUrl: 'http://api.acrossw.cn',
+    apiUrl: 'http://test.acrossw.cn',
   },
   mutations: {
 

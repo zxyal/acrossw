@@ -8,3 +8,16 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    data() {
+            return {
+                viewDefault: true,
+                email: ''
+            }
+        },
+        created() {
+
+        }
+}
+</script>
