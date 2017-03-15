@@ -8,7 +8,7 @@
                 <i-input type="password" v-model="formLogin.password"></i-input>
             </Form-item>
             <Form-item>
-                <i-button type="primary" long @click.native="loginPost" :loading="clickLoading">
+                <i-button type="primary" long @click="loginPost" :loading="clickLoading">
                     <span v-if="!clickLoading"> 登陆</span>
                     <span v-else>Loading...</span>
                 </i-button>

@@ -1,4 +1,3 @@
-
 <template>
     <div id='index-main'>
         <h3>{{email}}</h3>
@@ -10,8 +9,8 @@
     </div>
 </template>
 <script>
-export default {
-    data() {
+    export default {
+        data() {
             return {
                 email: ''
             }
@@ -37,5 +36,5 @@ export default {
                 })
             }
         }
-}
+    }
 </script>
