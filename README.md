@@ -1,6 +1,6 @@
 # acrossw.cn
 
-> this acrossw.cn view code
+> This acrossw.cn view code,Run the program requires a back-end data interface
 
 ## Build Setup
 
