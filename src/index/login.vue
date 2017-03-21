@@ -50,26 +50,27 @@ export default {
             loginPost() {
                 this.clickLoading = true
 
-                this.$http.post(this.$store.state.apiUrl + '/user/login', this.formLogin).then(r => {
+                this.$http.post(this.$store.state.apiUrl + '/user/login', this.$qs(this.formLogin))
+                    .then(response => {
+                        this.clickLoading = false
 
-                    this.clickLoading = false
+                        if (response.data.type == 'success') {
+                            localStorage.setItem('acrossw-token', response.data.token)
+                            localStorage.setItem('acrossw-info', response.data.info)
 
-                    if (r.body.type == 'success') {
-                        localStorage.setItem('acrossw-token', r.body.token)
-                        localStorage.setItem('acrossw-info', r.body.info)
+                            this.$Message.success('登陆成功', 2, n => {
+                                this.$router.push('user')
+                            })
 
-                        this.$Message.success('登陆成功', 2, n => {
-                            this.$router.push('user')
-                        })
-
-                    } else if (r.body.type == 'fail') {
-                        this.$Message.error(r.body.mes[0], 2)
-                    }
-
-                }, r => {
-                    this.clickLoading = false
-                    this.$Message.error('网络错误，请稍后重试', 2)
-                });
+                        } else if (response.data.type == 'fail') {
+                            this.$Message.error(r.body.mes[0], 2)
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        this.clickLoading = false
+                        this.$Message.error('网络错误，请稍后重试', 2)
+                    });
 
             },
         }

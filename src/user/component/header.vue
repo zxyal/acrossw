@@ -1,17 +1,12 @@
 <template>
-    <Menu mode="horizontal" :theme="theme1" active-name="1">
-        <Menu-item name="1">
-            <Icon type="ios-paper"></Icon>
-            控制面板
-        </Menu-item>
-        <Menu-item name="2">
-            <Icon type="ios-people"></Icon>
-            服务
-        </Menu-item>
-        <Menu-item name="3">
-            <Icon type="settings"></Icon>
-            关于
-        </Menu-item>
+    <Menu mode="horizontal" :theme="theme1" :active-name="activeIndex">
+        <router-link to='/user' tag='a'>
+            <Menu-item name="/user">控制面板</Menu-item>
+        </router-link>
+        <router-link to='/user/pricing' tag='a'>
+            <Menu-item name="/user/pricing">服务</Menu-item>
+        </router-link>
+        <Menu-item name="about">关于</Menu-item>
         <Submenu name="4" style="float:right">
             <template slot="title">
                 {{email}}
@@ -20,14 +15,13 @@
         </Submenu>
     </Menu>
 </template>
-
 <script>
-    export default {
-        data() {
+export default {
+    data() {
             return {
                 theme1: 'dark',
                 email: '',
-
+                activeIndex : '/user'
             }
         },
         created() {
@@ -38,6 +32,8 @@
                 let info = JSON.parse(jsonInfo);
                 this.email = info.email
             }
+
+            this.activeIndex = this.$route.path
         },
         methods: {
             signOut() {
@@ -49,5 +45,5 @@
                 })
             }
         },
-    }
+}
 </script>
