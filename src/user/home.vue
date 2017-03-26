@@ -32,9 +32,9 @@
         <div class="box-info ">
             <p class="box-title">流量</p>
             <div>
-                <i-circle :percent="80" :size="200">
+                <i-circle :percent="percent" :size="200">
                     <p class="demo-circle-inner" style="font-size:14px">剩余流量</p>
-                    <p class="demo-circle-inner" style="font-size:24px">80%</p>
+                    <p class="demo-circle-inner" style="font-size:24px">{{percent}}%</p>
                 </i-circle>
             </div>
         </div>
@@ -50,7 +50,7 @@ export default {
                 mask: {
                     display: 'none'
                 },
-                percent: 50,
+                percent: 0,
                 //total
                 totalTraffic: 0,
             }
@@ -64,7 +64,7 @@ export default {
                         var rU = r.data.data.u
                         var rD = r.data.data.d
                         var usedTransfer = (r.data.data.u + r.data.data.d)
-                        var percentage = (rTransfer - usedTransfer)
+                        this.percent = ((rTransfer - usedTransfer) / rTransfer * 100).toFixed()
 
                         if (1024 < rTransfer && ((1024 * 1024) - 1) > rTransfer) {
                             var totalTransfer = (rTransfer / 1024).toFixed(2)

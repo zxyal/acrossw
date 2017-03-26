@@ -10,22 +10,24 @@
                 <div class="detail">
                     <p>流量 1GB /月</p>
                     <p>不限设备数量</p>
-                    <p>无人工支持</p>
+                    <p>1个可用节点</p>
+                    <p>无技术支持</p>
                 </div>
                 <div class="hr"></div>
                 <Button type="text">Buy Now</Button>
             </div>
             <div class="card">
                 <span class="title">Plus</span>
-                <p class="price">¥ 20 /季</p>
+                <p class="price">¥ 25 /季</p>
                 <div class="hr"></div>
                 <div class="detail">
                     <p>流量 5GB /月</p>
                     <p>不限设备数量</p>
+                    <p>所有可用节点</p>
                     <p>5 * 6 小时技术支持</p>
                 </div>
                 <div class="hr"></div>
-                <Button type="text" style="color: #1b6aff">Buy Now</Button>
+                <Button type="text">Buy Now</Button>
             </div>
             <div class="card">
                 <span class="title">Pro</span>
@@ -34,6 +36,7 @@
                 <div class="detail">
                     <p>流量 10GB /月</p>
                     <p>不限设备数量</p>
+                    <p>所有可用节点</p>
                     <p>5 * 6 小时技术支持</p>
                 </div>
                 <div class="hr"></div>
