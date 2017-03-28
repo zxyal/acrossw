@@ -64,19 +64,27 @@ export default {
                         var rU = r.data.data.u
                         var rD = r.data.data.d
                         var usedTransfer = (r.data.data.u + r.data.data.d)
-                        this.percent = ((rTransfer - usedTransfer) / rTransfer * 100).toFixed()
 
-                        if (1024 < rTransfer && ((1024 * 1024) - 1) > rTransfer) {
-                            var totalTransfer = (rTransfer / 1024).toFixed(2)
-                            var unitText = 'KB'
-                        } else if ((1024 * 1024) < rTransfer && ((1024 * 1024 * 1024) - 1) > rTransfer) {
-                            var totalTransfer = (rTransfer / (1024 * 1024)).toFixed(2)
-                            var unitText = 'MB'
-                        } else if ((1024 * 1024 * 1024) < rTransfer && ((1024 * 1024 * 1024 * 1024) - 1) > rTransfer) {
-                            var totalTransfer = (rTransfer / (1024 * 1024 * 1024)).toFixed(2)
-                            console.log(totalTransfer)
-                            var unitText = 'GB'
+                        if (rTransfer <= 0) {
+                            var totalTransfer = 0
+                            var unitText = ''
+                            this.percent = 0
+                        } else {
+                            this.percent = ((rTransfer - usedTransfer) / rTransfer * 100).toFixed()
+
+                            if (1024 < rTransfer && ((1024 * 1024) - 1) > rTransfer) {
+                                var totalTransfer = (rTransfer / 1024).toFixed(2)
+                                var unitText = 'KB'
+                            } else if ((1024 * 1024) < rTransfer && ((1024 * 1024 * 1024) - 1) > rTransfer) {
+                                var totalTransfer = (rTransfer / (1024 * 1024)).toFixed(2)
+                                var unitText = 'MB'
+                            } else if ((1024 * 1024 * 1024) < rTransfer && ((1024 * 1024 * 1024 * 1024) - 1) > rTransfer) {
+                                var totalTransfer = (rTransfer / (1024 * 1024 * 1024)).toFixed(2)
+                                var unitText = 'GB'
+                            }
+
                         }
+
 
                         this.totalTraffic = totalTransfer + unitText
 

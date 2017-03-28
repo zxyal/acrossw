@@ -46,32 +46,22 @@ export default {
             registerPost: function(mes) {
                 this.clickregister = true
 
-                this.$http.post(this.$store.state.apiUrl + '/user/register', this.registerForm).then(r => {
+                this.$http.post(this.$store.state.apiUrl + '/user/register', this.$qs(this.registerForm)).then(r => {
 
-                    if (r.body.type == 'success') {
+                    if (r.data.type == 'success') {
 
-                        localStorage.setItem('youziyo-token', r.body.token)
-                        localStorage.setItem('youziyo-info', r.body.info)
+                        localStorage.setItem('acrossw-token', r.data.token)
+                        localStorage.setItem('acrossw-info', r.data.info)
 
-                        this.$message({
-                            message: '注册成功',
-                            type: 'success',
-                            onClose: c => {
+                        this.$Message.success('注册成功', 2, n => {
                                 this.$router.push('user')
-                            }
-                        });
+                        })
 
-                    } else if (r.body.type == 'fail') {
-                        this.$message({
-                            message: r.body.mes[0],
-                            type: 'error',
-                        });
+                    } else if (r.data.type == 'fail') {
+                        this.$Message.error(r.data.mes[0])
                     }
                 }, r => {
-                    this.$message({
-                        message: '网络错误，请稍后重试',
-                        type: 'error',
-                    });
+                    this.$Message.error(r.data.mes[0])
                 });
 
             },

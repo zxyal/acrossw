@@ -4,11 +4,11 @@
         <p>所有收入只用作服务器成本费用</p>
         <div class="cards">
             <div class="card">
-                <span class="title">Free</span>
-                <p class="price">¥ 0 /季</p>
+                <span class="title">Normal</span>
+                <p class="price">¥ 15 /季</p>
                 <div class="hr"></div>
                 <div class="detail">
-                    <p>流量 1GB /月</p>
+                    <p>流量 10GB /月</p>
                     <p>不限设备数量</p>
                     <p>1个可用节点</p>
                     <p>无技术支持</p>
@@ -18,10 +18,10 @@
             </div>
             <div class="card">
                 <span class="title">Plus</span>
-                <p class="price">¥ 25 /季</p>
+                <p class="price">¥ 30 /季</p>
                 <div class="hr"></div>
                 <div class="detail">
-                    <p>流量 5GB /月</p>
+                    <p>流量 25GB /月</p>
                     <p>不限设备数量</p>
                     <p>所有可用节点</p>
                     <p>5 * 6 小时技术支持</p>
@@ -31,10 +31,10 @@
             </div>
             <div class="card">
                 <span class="title">Pro</span>
-                <p class="price">¥ 35 /季</p>
+                <p class="price">¥ 55 /季</p>
                 <div class="hr"></div>
                 <div class="detail">
-                    <p>流量 10GB /月</p>
+                    <p>流量 50GB /月</p>
                     <p>不限设备数量</p>
                     <p>所有可用节点</p>
                     <p>5 * 6 小时技术支持</p>
