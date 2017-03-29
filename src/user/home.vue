@@ -4,35 +4,35 @@
             <p class="box-title">服务器状态</p>
             <div class="box-server-list">
                 <div class="server-list-child">
-                    <span>la.paplane.cn</span>
+                    <span>jp.paplane.cn</span>
                     <div class="server-status-normal"></div>
                 </div>
-                <div class="server-list-child">
+<!--                 <div class="server-list-child">
                     <span>la1.paplane.cn</span>
                     <div class="server-status-normal"></div>
-                </div>
+                </div> -->
                 <div class="server-list-child">
-                    <span>jp.paplane.cn</span>
+                    <span>la.paplane.cn</span>
                     <div class="server-status-danger"></div>
                 </div>
+            </div>
+        </div>
+        <div class="box-info">
+            <p class="box-title">配置信息</p>
+            <div>
+                <span>端口: {{port}}</span>
+            </div>
+            <div>
+                <span>密码: {{passwd}}</span>
+            </div>
+            <div>
+                <span>加密: {{method}}</span>
             </div>
         </div>
         <div class="box-info">
             <p class="box-title">套餐信息</p>
             <div>
                 <span>已使用:{{totalTraffic}}</span>
-            </div>
-        </div>
-        <div class="box-info">
-            <p class="box-title">配置信息</p>
-            <div>
-                <span>端口:{{port}}</span>
-            </div>
-            <div>
-                <span>密码:{{passwd}}</span>
-            </div>
-            <div>
-                <span>加密:{{method}}</span>
             </div>
         </div>
         <div class="box-info ">
@@ -59,9 +59,9 @@ export default {
                 percent: 0,
                 //total
                 totalTraffic: 0,
-                port : 0,
-                passwd : '',
-                method : '',
+                port: 0,
+                passwd: '',
+                method: '',
             }
         },
         created() {
