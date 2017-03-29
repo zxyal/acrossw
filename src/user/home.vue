@@ -20,13 +20,19 @@
         <div class="box-info">
             <p class="box-title">套餐信息</p>
             <div>
-                <span>总流量:{{totalTraffic}}</span>
-            </div>
-            <div>
                 <span>已使用:{{totalTraffic}}</span>
             </div>
+        </div>
+        <div class="box-info">
+            <p class="box-title">配置信息</p>
             <div>
-                <span>总流量:{{totalTraffic}}</span>
+                <span>端口:{{port}}</span>
+            </div>
+            <div>
+                <span>密码:{{passwd}}</span>
+            </div>
+            <div>
+                <span>加密:{{method}}</span>
             </div>
         </div>
         <div class="box-info ">
@@ -53,6 +59,9 @@ export default {
                 percent: 0,
                 //total
                 totalTraffic: 0,
+                port : 0,
+                passwd : '',
+                method : '',
             }
         },
         created() {
@@ -60,6 +69,10 @@ export default {
             this.$http.post(this.$store.state.apiUrl + '/home', this.$qs(this.loginForm))
                 .then(r => {
                     if (r.data.type == 'success') {
+                        this.port = r.data.data.port
+                        this.passwd = r.data.data.passwd
+                        this.method = r.data.data.method
+
                         var rTransfer = r.data.data.transfer_enable
                         var rU = r.data.data.u
                         var rD = r.data.data.d
