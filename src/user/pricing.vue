@@ -4,7 +4,7 @@
         <p>所有收入只用作服务器成本费用</p>
         <div class="cards">
             <div class="card">
-                <span class="title">Normal</span>
+                <span class="title">Basic</span>
                 <p class="price">¥ 15 /季</p>
                 <div class="hr"></div>
                 <div class="detail">
@@ -14,7 +14,7 @@
                     <p>无技术支持</p>
                 </div>
                 <div class="hr"></div>
-                <Button type="text">Buy Now</Button>
+                <Button type="text" @click="comeSoon">Buy Now</Button>
             </div>
             <div class="card">
                 <span class="title">Plus</span>
@@ -27,7 +27,7 @@
                     <p>5 * 6 小时技术支持</p>
                 </div>
                 <div class="hr"></div>
-                <Button type="text">Buy Now</Button>
+                <Button type="text" @click="comeSoon">Buy Now</Button>
             </div>
             <div class="card">
                 <span class="title">Pro</span>
@@ -40,7 +40,7 @@
                     <p>5 * 6 小时技术支持</p>
                 </div>
                 <div class="hr"></div>
-                <Button type="text">Buy Now</Button>
+                <Button type="text" @click="comeSoon">Buy Now</Button>
             </div>
         </div>
     </div>
@@ -59,6 +59,12 @@ export default {
         methods: {
             urlChange: function(r) {
                 console.log(r)
+            },
+            comeSoon() {
+                this.$Notice.open({
+                    title: 'Come soon',
+                    desc: '敬请期待！'
+                });
             }
         },
 }
