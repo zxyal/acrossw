@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "iview": "^2.0.0-rc.3",
+    "iview": "^2.0.0-rc.9",
     "vue": "^2.1.0",
     "vue-router": "^2.2.0",
     "vuex": "^2.2.1"
@@ -25,7 +25,7 @@
     "style-loader": "^0.13.1",
     "vue-loader": "^10.0.0",
     "vue-template-compiler": "^2.1.0",
-    "webpack": "^2.2.0",
+    "webpack": "^2.3.3",
     "webpack-dev-server": "^2.2.0"
   },
   "optionalDependencies": {}

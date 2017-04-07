@@ -1,50 +1,50 @@
 <template>
-    <Col span="18" class="admin-row">
+    <div class="admin-row">
     <Button type="primary" icon="plus" @click="addPackageModal = !addPackageModal">添加</Button>
     <Table class="table" border :context="self" :columns="columns" :data="data"></Table>
-    <Modal v-model="addPackageModal" title="普通的Modal对话框标题" @on-ok="ok" @on-cancel="cancel">
-        <Form :model="formItem" :label-width="80">
+    <Modal v-model="addPackageModal" title="添加套餐" @on-ok="addPackage">
+        <Form :model="package" :label-width="80">
             <Form-item label="流量包名称">
-                <Input v-model="formItem.input" placeholder="请输入流量包名称"></Input>
-            </Form-item>
-            <Form-item label="选择器">
-                <Select v-model="formItem.select" placeholder="请选择">
-                    <Option value="beijing">北京市</Option>
-                    <Option value="shanghai">上海市</Option>
-                    <Option value="shenzhen">深圳市</Option>
-                </Select>
-            </Form-item>
-            <Form-item label="日期控件">
-                <Row>
-                    <Col span="11">
-                    <Date-picker type="date" placeholder="选择日期" v-model="formItem.date"></Date-picker>
-                    </Col>
-                    <Col span="2" style="text-align: center">-</Col>
-                    <Col span="11">
-                    <Time-picker type="time" placeholder="选择时间" v-model="formItem.time"></Time-picker>
-                    </Col>
-                </Row>
-            </Form-item>
-            <Form-item label="单选框">
-                <Radio-group v-model="formItem.radio">
-                    <Radio label="male">男</Radio>
-                    <Radio label="female">女</Radio>
-                </Radio-group>
+                <Input v-model="package.title" placeholder="请输入流量包名称"></Input>
             </Form-item>
             <Form-item label="说明">
-                <Input v-model="formItem.textarea" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入..."></Input>
+                <Input v-model="package.explain_text" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入..."></Input>
+            </Form-item>
+            <Form-item label="流量">
+                <Input v-model="package.transfer" placeholder="单位 GB"></Input>
+            </Form-item>
+            <Form-item label="结算类型">
+                <Select v-model="package.type" placeholder="请选择">
+                    <Option :value="1">季</Option>
+                    <Option :value="2">年</Option>
+                </Select>
+            </Form-item>
+            <Form-item label="数量">
+                <Input v-model="package.amount" placeholder="数量"></Input>
+            </Form-item>
+                        <Form-item label="价格">
+                <Input v-model="package.price" placeholder="价格"></Input>
             </Form-item>
         </Form>
     </Modal>
-    </Col>
+    </div>
 </template>
+
 <script>
 export default {
     data() {
             return {
                 self: this,
                 addPackageModal: false,
-                formItem : {},
+                formItem: {},
+                package: {
+                    title: '',
+                    explain_text: '',
+                    transfer: null,
+                    type: 1,
+                    amount: null,
+                    price: null
+                },
                 columns: [{
                     title: 'ID',
                     key: 'id',
@@ -53,10 +53,19 @@ export default {
                     key: 'title',
                 }, {
                     title: '说明',
-                    key: 'explain'
+                    key: 'explain_text'
                 }, {
-                    title: '流量',
+                    title: '流量（GB）',
                     key: 'transfer'
+                }, {
+                    title: '类型',
+                    key: 'type'
+                }, {
+                    title: '数量',
+                    key: 'amount'
+                }, {
+                    title: '价格',
+                    key: 'price'
                 }, {
                     title: '操作',
                     key: 'action',
@@ -83,7 +92,47 @@ export default {
             edit(index) {
                 console.log(index)
             },
-            remove(index) {}
+            remove(index) {
+                this.$Modal.confirm({
+                    title: '删除',
+                    content: '确定删除当前套餐吗？',
+                    onOk: () => {
+                        this.$http.post(this.$store.state.apiUrl + '/admin/package/delete', this.$qs({
+                                id: this.data[index].id
+                            }))
+                            .then(response => {
+                                if (response.data.type == "success") {
+                                    this.$Message.success(response.data.data)
+                                    this.data.splice(index, 1)
+                                } else {
+                                    this.$Message.error(response.data.data)
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error)
+                                this.$Message.error('未知错误')
+                            })
+                    },
+                    onCancel: () => {}
+                });
+            },
+            addPackage() {
+                this.$http.post(this.$store.state.apiUrl + '/admin/package/create', this.$qs(this.package))
+                    .then(response => {
+                        if (response.data.type == "success") {
+                            this.data.push(this.package)
+                            this.$Message.success(response.data.data)
+                            this.package = []
+                        } else {
+                            this.$Message.error(response.data.data)
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        this.$Message.error('未知错误')
+                    })
+                console.log(this.package)
+            }
         }
 }
 </script>

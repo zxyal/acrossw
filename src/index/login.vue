@@ -63,7 +63,7 @@ export default {
                             })
 
                         } else if (response.data.type == 'fail') {
-                            this.$Message.error(r.body.mes[0], 2)
+                            this.$Message.error(response.body.mes[0], 2)
                         }
                     })
                     .catch(error => {
