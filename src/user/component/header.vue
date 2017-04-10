@@ -6,8 +6,8 @@
         <router-link to='/user/pricing' tag='a'>
             <Menu-item name="/user/pricing">套餐</Menu-item>
         </router-link>
-        <router-link to='/user/download' tag='a'>
-            <Menu-item name="/user/download">客户端</Menu-item>
+        <router-link to='/user/client' tag='a'>
+            <Menu-item name="/user/client">客户端</Menu-item>
         </router-link>
         <Menu-item name="about" @click.native="about">关于</Menu-item>
         <Submenu name="4" style="float:right">

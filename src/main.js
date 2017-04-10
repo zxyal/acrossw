@@ -42,6 +42,7 @@ Axios.interceptors.response.use(function(response) {
 
 //通用的CSS
 import './assets/css/normalize.css'
+import './assets/css/font-awesome.min.css'
 import 'iview/dist/styles/iview.css';
 
 new Vue({

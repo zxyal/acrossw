@@ -11,6 +11,7 @@ import indexhasLoggedPage from './index/hasLogged.vue'
 import userMainPage from './user/main.vue'
 import userHomePage from './user/home.vue'
 import userPricingPage from './user/pricing.vue'
+import userClient from './user/client.vue'
 
 //Admin
 import adminMainPage from './admin/main.vue'
@@ -25,18 +26,19 @@ const routes = [{
         { path: 'login', component: indexLoginPage },
         { path: 'register', component: indexRegisterPage },
         { path: 'hasLogged', component: indexhasLoggedPage },
-
     ]
 }, {
     path: '/user',
     component: userMainPage,
     children: [{
-        path: '',
-        component: userHomePage
-    }, {
-        path: 'pricing',
-        component: userPricingPage
-    }, ]
+            path: '',
+            component: userHomePage
+        }, {
+            path: 'pricing',
+            component: userPricingPage
+        },
+        { path: 'client', component: userClient }
+    ]
 }, {
     path: '/admin',
     component: adminMainPage,

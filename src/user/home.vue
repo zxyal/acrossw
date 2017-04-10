@@ -31,9 +31,10 @@
                 <div class="package-info-text">
                     <p>
                         <span class="package-text">当前套餐 </span>
-                        <span class="stress">Test</span>
+                        <span class="stress">{{package.title}}</span>
                     </p>
-                    <p><span class="package-text">每月流量 </span><span class="stress">{{totalFlow}}</span></p>
+                    <p><span class="package-text">每月流量 </span><span class="stress">{{package.transfer}}GB</span></p>
+                    <!-- <p><span class="package-text"><Button type="primary">立即购买套餐</Button></span></p> -->
                 </div>
             </div>
         </div>
@@ -59,6 +60,10 @@ export default {
                 port: 0,
                 passwd: '',
                 method: '',
+                package: {
+                    title: 'None',
+                    transfer: 0,
+                }
             }
         },
         created() {
@@ -66,6 +71,10 @@ export default {
             this.$http.post(this.$store.state.apiUrl + '/home', this.$qs(this.loginForm))
                 .then(r => {
                     if (r.data.type == 'success') {
+                        if(r.data.data.package != 'no'){
+                            this.package = r.data.data.package
+                        }
+                        
                         this.port = r.data.data.port
                         this.passwd = r.data.data.passwd
                         this.method = r.data.data.method
