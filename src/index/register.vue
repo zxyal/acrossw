@@ -58,10 +58,13 @@ export default {
                         })
 
                     } else if (r.data.type == 'fail') {
+                        this.clickregister = false
                         this.$Message.error(r.data.mes[0])
                     }
                 }, r => {
-                    this.$Message.error(r.data.mes[0])
+                    this.clickregister = false
+                    console.log(error)
+                    this.$Message.error('网络错误，请稍后重试')
                 });
 
             },

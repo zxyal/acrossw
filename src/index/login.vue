@@ -63,13 +63,14 @@ export default {
                             })
 
                         } else if (response.data.type == 'fail') {
+                            this.clickLoading = false
                             this.$Message.error(response.body.mes[0], 2)
                         }
                     })
                     .catch(error => {
                         console.log(error)
                         this.clickLoading = false
-                        this.$Message.error('网络错误，请稍后重试', 2)
+                        this.$Message.error('网络错误，请稍后重试')
                     });
 
             },
