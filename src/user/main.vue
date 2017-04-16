@@ -6,7 +6,7 @@
         </transition>
     </div>
 </template>
-<script>
+    <script>
     import userHeader from './component/header.vue'
 
     export default {
@@ -22,7 +22,7 @@
             let token = localStorage.getItem('acrossw-token')
 
             if (!jsonInfo && !token) {
-                this.$router.push({name: 'main'})
+                this.$router.push({ name: 'main' })
             }
         },
         components: {
@@ -30,21 +30,21 @@
         },
 
     }
-</script>
+    </script>
 <style>
-    #user {
-        background: #eee;
-        height: 100vh;
-    }
-    
-    .switch-enter-active,
-    .switch-leave-active {
-        transition: all .4s;
-    }
-    
-    .switch-enter,
-    .switch-leave-to {
-        opacity: 0;
-        margin-top: 0;
-    }
+#user {
+    background: #eee;
+    height: 100vh;
+}
+
+.switch-enter-active,
+.switch-leave-active {
+    transition: all .4s;
+}
+
+.switch-enter,
+.switch-leave-to {
+    opacity: 0;
+    margin-top: 0;
+}
 </style>

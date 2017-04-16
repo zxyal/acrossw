@@ -17,25 +17,27 @@ Vue.prototype.$http = Axios
 Vue.prototype.$qs = qs.stringify
 
 //拦截器
-Axios.interceptors.request.use(function(config) {
+Axios.interceptors.request.use(function (config) {
     let token = localStorage.getItem('acrossw-token')
     if (token) {
         config.headers['Verify-Token'] = token;
     }
     return config;
-}, function(error) {
+}, function (error) {
     return Promise.reject(error);
 });
 
 
-Axios.interceptors.response.use(function(response) {
+Axios.interceptors.response.use(function (response) {
     if (response.data.type == 'fail' && response.data.data == 'token_invalid') {
         localStorage.removeItem('acrossw-token')
         router.push('/')
-    } else {
+    } else if(response.data.type == 'error' && response.data.data == 'not_login'){
+        router.push('/login')
+    }else{
         return response;
     }
-}, function(error) {
+}, function (error) {
     return Promise.reject(error);
 });
 

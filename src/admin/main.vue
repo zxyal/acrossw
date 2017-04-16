@@ -1,9 +1,12 @@
 <template>
     <Row>
-        <Col span="4" class="left-menu">
-        <Menu :theme="theme3" active-name="1">
+        <Col span="4"
+             class="left-menu">
+        <Menu :theme="theme3"
+              active-name="1">
             <Menu-group title="内容管理">
-                <router-link to="/admin/package" tag="a">
+                <router-link to="/admin/package"
+                             tag="a">
                     <Menu-item name="1">
                         <Icon type="document-text"></Icon>套餐</Menu-item>
                 </router-link>
@@ -27,7 +30,7 @@
         </Menu>
         </Col>
         <transition name='switch'>
-        <Col span="18">
+            <Col span="18">
             <router-view></router-view>
             </Col>
         </transition>
@@ -36,23 +39,24 @@
 <script>
 export default {
     data() {
-            return {
-                theme3: 'light'
-            }
-        },
-        created() {
-            this.$http.post(this.$store.state.apiUrl + '/admin/verify')
-                .then(response => {
-                    if (response.data.type == 'success') {
-                        if (response.data.mes.is_admin != 1) {
-                            this.$route.push('/')
-                        }
-                    }
-                })
-                .catch(error => {
-
-                })
+        return {
+            theme3: 'light'
         }
+    },
+    created() {
+        this.$http.post(this.$store.state.apiUrl + '/admin/verify')
+            .then(response => {
+                if (response.data.type == 'success') {
+                    if (response.data.mes.is_admin !== 1) {
+                        console.log(response.data.mes.is_admin)
+                        this.$router.push('/')
+                    }
+                }
+            })
+            .catch(error => {
+
+            })
+    }
 }
 </script>
 <style>

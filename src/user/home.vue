@@ -9,7 +9,8 @@
                 </div>
                 <div class="server-list-child">
                     <span>la.paplane.cn</span>
-                    <div style="color: rgb(138, 138, 138)">offline</div>
+                    <div style="color: rgb(32, 206, 55)">online</div>                    
+                    <!--<div style="color: rgb(138, 138, 138)">offline</div>-->
                 </div>
             </div>
         </div>
