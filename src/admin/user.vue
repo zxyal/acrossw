@@ -61,6 +61,9 @@ export default {
                     title: '可用流量',
                     key: 'transfer_enable'
                 }, {
+                    title: '已使用',
+                    key: 'used'
+                }, {
                     title: '端口',
                     key: 'port'
                 }, {
@@ -70,8 +73,14 @@ export default {
                     title: '最后使用时间',
                     key: 't'
                 }, {
+                    title: 'SS密码',
+                    key: 'passwd'
+                }, {
                     title: '注册时间',
                     key: 'reg_date'
+                }, {
+                    title: '启用状态',
+                    key: 'enable'
                 }, {
                     title: '操作',
                     key: 'action',
