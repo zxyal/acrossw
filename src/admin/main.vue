@@ -1,36 +1,28 @@
 <template>
     <Row>
-        <Col span="4"
-             class="left-menu">
-        <Menu :theme="theme3"
-              active-name="1">
-            <Menu-group title="内容管理">
-                <router-link to="/admin/package"
-                             tag="a">
-                    <Menu-item name="1">
-                        <Icon type="document-text"></Icon>套餐</Menu-item>
-                </router-link>
+        <Menu mode="horizontal" :theme="theme" active-name="1">
+            <Menu-item name="0">
+                AcrossW Control
+            </Menu-item>
+            <router-link to='/admin/package'>
+                <Menu-item name="1">
+                    <Icon type="ios-paper"></Icon>
+                    套餐管理
+                </Menu-item>
+            </router-link >
+            <router-link to='/admin/user'>
                 <Menu-item name="2">
-                    <Icon type="chatbubbles"></Icon>用户</Menu-item>
-                <Menu-item name="3">
-                    <Icon type="chatbubbles"></Icon>节点</Menu-item>
-                <Menu-item name="3">
-                    <Icon type="chatbubbles"></Icon>News</Menu-item>
-            </Menu-group>
-            <Menu-group title="统计分析">
-                <Menu-item name="3">
-                    <Icon type="heart"></Icon>
-                    交易记录
+                    <Icon type="ios-people"></Icon>
+                    用户管理
                 </Menu-item>
-                <Menu-item name="4">
-                    <Icon type="heart-broken"></Icon>
-                    流失用户
-                </Menu-item>
-            </Menu-group>
+            </router-link>    
+            <Menu-item name="3">
+                <Icon type="settings"></Icon>
+                综合设置
+            </Menu-item>
         </Menu>
-        </Col>
         <transition name='switch'>
-            <Col span="18">
+            <Col span="22">
             <router-view></router-view>
             </Col>
         </transition>
@@ -40,7 +32,7 @@
 export default {
     data() {
         return {
-            theme3: 'light'
+            theme: 'primary'
         }
     },
     created() {

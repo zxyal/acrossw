@@ -17,6 +17,7 @@ import userClient from './user/client.vue'
 import adminMainPage from './admin/main.vue'
 import adminHomePage from './admin/home.vue'
 import adminPackagePage from './admin/package.vue'
+import adminUserPage from './admin/user.vue'
 
 const routes = [{
     path: '/',
@@ -45,6 +46,7 @@ const routes = [{
     children: [
         { path: '', component: adminHomePage },
         { path: 'package', component: adminPackagePage },
+        { path: 'user', component: adminUserPage },
     ]
 }, ]
 

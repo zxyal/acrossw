@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "iview": "^2.0.0-rc.9",
-    "vue": "^2.1.0",
-    "vue-router": "^2.2.0",
+    "iview": "^2.0.0-rc.12",
+    "vue": "^2.3.2",
+    "vue-router": "^2.5.3",
+    "vue-template-compiler": "^2.3.2",
     "vuex": "^2.3.0",
-    "webpack": "^2.4.1"
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
